@@ -69,7 +69,7 @@ def convert(snippet, phrase):
         results.append(result)
     return results
 
-# keep going util they hit
+# keep going util they     hit
 try:
     while True:
         snippets = list(PHRASES.keys())
