@@ -1,10 +1,11 @@
-# create a mapping of state to abbreviation(缩写)
+﻿# create a mapping of state to abbreviation(缩写)
 states = {
     'Oregon': 'OR',
     'Florida': 'FL',
     'California': 'CA',
     'New York': 'NY',
     'Michigan': 'MI'
+    'Shannxi':'Shan'
 }
 
 # create a basic set of states and some cities in them
@@ -18,6 +19,7 @@ cities = {
 # add some more cities
 cities['NY'] = 'New York'
 cities['OR'] = 'Portland'
+cities['XA'] = 'Xian'
 
 print('-'*10)
 print("NY State has:", cities['NY'])
