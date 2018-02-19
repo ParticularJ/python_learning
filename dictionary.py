@@ -8,7 +8,7 @@ states = {
     'Shannxi':'Shan'
 }
 
-# create a basic set of states and some cities in them
+# create a basic set of states and       some cities in them
 
 cities = {
     'CA': 'San Francisco',
