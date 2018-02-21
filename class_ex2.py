@@ -94,7 +94,7 @@ class CentralCorridor(Scene):
                 While he's laughing you run up and shoot him square in
                 the head putting him
                 """))
-            return "laser_weapon_armory"
+            return 'laser_weapon_armory'
 
         else:
             print("DOES NOT COMPUTE!")
@@ -116,6 +116,7 @@ class LaserWeaponArmory(Scene):
             """))
 
         code = f"{randint(1, 9)}{randint(1, 9)}{randint(1, 9)}"
+        print(code)
         guess = input("[keypad]> ")
         guesses = 0
         while guess != code and guesses < 10:
@@ -187,19 +188,67 @@ class TheBridge(Scene):
 class EscapePod(Scene):
 
     def enter(self):
-        pass
+        print(dedent("""
+            You rush through the ship desperately trying to make it to
+            the escape pod before the whole ship explodes. It seems
+            like hardly any Gothons are on the ship, so your run is
+            clear of interference. You get to the chamber with the
+            escape pods, and now need to pick one to take. Some of
+            them could be damaged but you don't have time to look.
+            There's 5 pods, which one do you take?
+            """))
+
+        good_pod = randint(1, 5)
+        print(good_pod)
+        guess = input("[pod #]> ")
+        if int(guess) != good_pod:
+            print(dedent("""
+                You jump into pod {guess} and hit the eject button.
+                The pod escapes out into the void of space, then
+                implodes as the hull ruptures, crushing your body into
+                jam jelly.
+                """))
+            return 'death'
+        else:
+            print(dedent("""
+                You jump into pod {guess} and hit the eje
+                The pod easily slides out into space heading to the
+                planet below. As it flies to the planet, you look
+                back and see your ship implode then explode like a
+                bright star, taking out the Gothon ship at the same
+                time. You won!
+                """))
+            return 'finished'
+
+
+class Finished(Scene):
+
+    def enter(self):
+        print("You won!Good job.")
+        return 'finished'
+
 
 class Map(object):
 
+    scenes = {
+        'central_corridor': CentralCorridor(),
+        'laser_weapon_armory': LaserWeaponArmory(),
+        'the_bridge': TheBridge(),
+        'escape_pod': EscapePod(),
+        'death': Death(),
+        'finished': Finished()
+    }
+
     def __init__(self, start_scene):
-        pass
+        self.start_scene = start_scene
 
     def next_scene(self, scene_name):
-        pass
-
+        val = Map.scenes.get(scene_name)
+        #print(val)
+        return val
     def opening_scene(self):
-        pass
+        return self.next_scene(self.start_scene)
 
-a_map = Map('central corridor')
+a_map = Map('central_corridor')
 a_game = Engine(a_map)
 a_game.play()
